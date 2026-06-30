@@ -47,7 +47,7 @@ fst_from_biallelic(Y, N)
 \references{
 Bhatia G, Patterson N, Sankararaman S, Price AL. 2013. Estimating and
 interpreting F\eqn{_{ST}}: the impact of rare variants. Genome Research
-23(9):1514-1521.
+23(9):1514-1521. \doi{10.1101/gr.154831.113}
 }
 \seealso{
 \code{\link{cov_from_biallelic}}, \code{\link{dist_from_biallelic}}

@@ -159,6 +159,19 @@ cov_from_genetic_data(
 )
 
 }
+\references{
+Gower JC. 1966. Some distance properties of latent root and vector methods
+used in multivariate analysis. Biometrika 53(3-4):325-338.
+\doi{10.1093/biomet/53.3-4.325}
+
+Dyer RJ, Nason JD. 2004. Population graphs: the graph theoretic shape of
+genetic structure. Molecular Ecology 13(7):1713-1727.
+\doi{10.1111/j.1365-294X.2004.02177.x}
+
+Dyer RJ. 2015. Population graphs and landscape genetics. Annual Review of
+Ecology, Evolution, and Systematics 46:327-342.
+\doi{10.1146/annurev-ecolsys-112414-054150}
+}
 \seealso{
 \code{wishart_covariance}, \code{\link{cov_from_biallelic}},
   \code{\link{dist_from_cov}}, \code{simulate_covariance_response}

@@ -7,3 +7,5 @@
 ^\.github$
 ^.*\.Rcheck$
 ^.*\.tar\.gz$
+^landgraph_hex_final\.png$
+^figure$

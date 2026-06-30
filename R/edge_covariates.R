@@ -13,15 +13,25 @@
 #'   \code{a}, \code{b}, 1-based node indices) and \code{d} (the matching numeric
 #'   vector \eqn{d_{ab} = x_a - x_b}).
 #' @seealso \code{terradish_directed}
+#' @examples
+#' coords <- as.matrix(expand.grid(x = 0:2, y = 0:2))
+#' g <- deme_graph(coords, neighbours = "lattice")
+#' elevation <- c(10, 20, 30, 25, 15, 5, 8, 18, 28)
+#' edge_gradient(elevation, g)
 #' @export
 edge_gradient <- function(x, data)
 {
   stopifnot(inherits(data, c("terradish_graph", "radish_graph")))
-  if (inherits(x, "PackedSpatRaster")) x <- terra::unwrap(x)
+  if (inherits(x, "PackedSpatRaster")) {
+    if (!requireNamespace("terra", quietly = TRUE))
+      stop("The 'terra' package is required for PackedSpatRaster input.", call. = FALSE)
+    x <- terra::unwrap(x)
+  }
   if (inherits(x, "SpatRaster")) {
-    vals <- terra::values(x, dataframe = FALSE)[, 1]
-    # active cells in vertex order: extract at vertex coordinates
-    vals <- terra::extract(x, data$vertex_coordinates)[, ncol(terra::extract(x, data$vertex_coordinates))]
+    if (!requireNamespace("terra", quietly = TRUE))
+      stop("The 'terra' package is required for SpatRaster input.", call. = FALSE)
+    ex <- terra::extract(x, data$vertex_coordinates)
+    vals <- ex[, ncol(ex)]
   } else {
     vals <- as.numeric(x)
   }
@@ -34,12 +44,12 @@ edge_gradient <- function(x, data)
 
 #' Circulation (flow-field) edge covariate from a spatial vector field
 #'
-#' Builds an antisymmetric per-edge covariate from a spatial VECTOR field (for
+#' Builds an antisymmetric per-edge covariate from a spatial vector field (for
 #' example wind or current), for the \code{circulation} argument of
-#' \code{dragon}. Where \code{\link{edge_gradient}} takes the gradient of a
-#' scalar potential -- which is curl-free and so yields a reversible generator
-#' whose stationary distribution is collinear with the potential -- a flow field
-#' can carry a rotational/curl component, making the directed generator
+#' \code{dragon}. \code{\link{edge_gradient}} takes the gradient of a scalar
+#' potential, which is curl-free and yields a reversible generator whose
+#' stationary distribution is collinear with the potential. A vector flow field
+#' can carry a rotational/curl component instead, making the directed generator
 #' non-reversible and its stationary distribution non-collinear with any scalar
 #' covariate.
 #'
@@ -58,14 +68,25 @@ edge_gradient <- function(x, data)
 #' @return A numeric vector with one entry per undirected edge in
 #'   \code{data$edge_pairs}, ready to pass as \code{dragon(circulation = )}.
 #' @seealso \code{\link{edge_gradient}}, \code{dragon}
+#' @examples
+#' coords <- as.matrix(expand.grid(x = 0:2, y = 0:2))
+#' g <- deme_graph(coords, neighbours = "lattice")
+#' field <- matrix(c(1, 0), nrow = nrow(coords), ncol = 2, byrow = TRUE)
+#' edge_flow(field, g)
 #' @export
 edge_flow <- function(field, data)
 {
   stopifnot(inherits(data, c("terradish_graph", "radish_graph")))
   vc <- as.matrix(data$vertex_coordinates)
   n <- nrow(vc)
-  if (inherits(field, "PackedSpatRaster")) field <- terra::unwrap(field)
+  if (inherits(field, "PackedSpatRaster")) {
+    if (!requireNamespace("terra", quietly = TRUE))
+      stop("The 'terra' package is required for PackedSpatRaster input.", call. = FALSE)
+    field <- terra::unwrap(field)
+  }
   if (inherits(field, "SpatRaster")) {
+    if (!requireNamespace("terra", quietly = TRUE))
+      stop("The 'terra' package is required for SpatRaster input.", call. = FALSE)
     ex <- terra::extract(field, vc)
     fmat <- as.matrix(ex[, (ncol(ex) - 1L):ncol(ex), drop = FALSE])
   } else if (is.function(field)) {
@@ -95,5 +116,3 @@ edge_flow <- function(field, data)
   rbind(cbind(a = ep[, 1], b = ep[, 2]),
         cbind(a = ep[, 2], b = ep[, 1]))
 }
-
-# Generator model: par = c(theta (p), gamma (q)) -> directed rates + design.

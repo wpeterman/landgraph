@@ -1,12 +1,12 @@
 Package: landgraph
 Type: Package
-Title: Landscape-Genetic Graph, Covariance, and Directional Covariate Primitives
+Title: Graphs and Covariance for Landscape Genetics
 Version: 0.0.1
 Date: 2026-06-11
 Authors@R: c(
-  person(given = "Bill", family = "Peterman", role = c("aut", "cre"),
+  person(given = "Bill", family = "Peterman", role = c("aut", "cre", "cph"),
          email = "peterman.73@osu.edu"),
-  person(given = c("Nathaniel", "S."), family = "Pope", role = "aut",
+  person(given = c("Nathaniel", "S."), family = "Pope", role = c("aut", "cph"),
          email = "nspope@utexas.edu"))
 Description: Shared, dependency-light primitives for landscape-genetic network
   methods: a lightweight deme/landscape graph (vertex coordinates and an undirected
@@ -24,7 +24,10 @@ Imports:
 Suggests:
   terra,
   deldir,
+  knitr,
+  rmarkdown,
   testthat (>= 3.0.0)
+VignetteBuilder: knitr
 Roxygen: list(markdown = FALSE)
 Config/testthat/edition: 3
 URL: https://github.com/wpeterman/landgraph

@@ -88,7 +88,7 @@ cov_from_biallelic(Y2, N = N2)
 Yang J, Benyamin B, McEvoy BP, Gordon S, Henders AK, Nyholt DR,
 Madden PA, Heath AC, Martin NG, Montgomery GW, Goddard ME, Visscher PM.
 2010. Common SNPs explain a large proportion of the heritability for human
-height. Nature Genetics 42(7):565-569.
+height. Nature Genetics 42(7):565-569. \doi{10.1038/ng.608}
 }
 \seealso{
 \code{\link{cov_from_genetic_data}}, \code{\link{fst_from_biallelic}},

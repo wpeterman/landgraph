@@ -26,7 +26,7 @@
 #' @references
 #' Bhatia G, Patterson N, Sankararaman S, Price AL. 2013. Estimating and
 #' interpreting F\eqn{_{ST}}: the impact of rare variants. Genome Research
-#' 23(9):1514-1521.
+#' 23(9):1514-1521. \doi{10.1101/gr.154831.113}
 #'
 #' @return A symmetric numeric matrix of pairwise F\eqn{_{ST}} with zero
 #'   diagonal.
@@ -117,7 +117,7 @@ fst_from_biallelic <- function(Y, N)
 #' Yang J, Benyamin B, McEvoy BP, Gordon S, Henders AK, Nyholt DR,
 #' Madden PA, Heath AC, Martin NG, Montgomery GW, Goddard ME, Visscher PM.
 #' 2010. Common SNPs explain a large proportion of the heritability for human
-#' height. Nature Genetics 42(7):565-569.
+#' height. Nature Genetics 42(7):565-569. \doi{10.1038/ng.608}
 #'
 #' @return A symmetric positive-semidefinite numeric matrix of pairwise
 #'   genetic covariances.  Row and column names match those of \code{Y} when
@@ -316,6 +316,19 @@ cov_from_biallelic <- function(Y,
 #' \code{wishart_covariance}, inspect the eigenvalues first. The
 #' within-population diagonal is useful for population-graph workflows, but it
 #' does not guarantee a positive-definite covariance matrix for every dataset.
+#'
+#' @references
+#' Gower JC. 1966. Some distance properties of latent root and vector methods
+#' used in multivariate analysis. Biometrika 53(3-4):325-338.
+#' \doi{10.1093/biomet/53.3-4.325}
+#'
+#' Dyer RJ, Nason JD. 2004. Population graphs: the graph theoretic shape of
+#' genetic structure. Molecular Ecology 13(7):1713-1727.
+#' \doi{10.1111/j.1365-294X.2004.02177.x}
+#'
+#' Dyer RJ. 2015. Population graphs and landscape genetics. Annual Review of
+#' Ecology, Evolution, and Systematics 46:327-342.
+#' \doi{10.1146/annurev-ecolsys-112414-054150}
 #'
 #' @return A symmetric numeric matrix with one row and column per individual
 #'   (when \code{groups = NULL}) or population (when \code{groups} is

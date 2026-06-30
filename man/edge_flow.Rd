@@ -20,12 +20,12 @@ A numeric vector with one entry per undirected edge in
   \code{data$edge_pairs}, ready to pass as \code{dragon(circulation = )}.
 }
 \description{
-Builds an antisymmetric per-edge covariate from a spatial VECTOR field (for
+Builds an antisymmetric per-edge covariate from a spatial vector field (for
 example wind or current), for the \code{circulation} argument of
-\code{dragon}. Where \code{\link{edge_gradient}} takes the gradient of a
-scalar potential -- which is curl-free and so yields a reversible generator
-whose stationary distribution is collinear with the potential -- a flow field
-can carry a rotational/curl component, making the directed generator
+\code{dragon}. \code{\link{edge_gradient}} takes the gradient of a scalar
+potential, which is curl-free and yields a reversible generator whose
+stationary distribution is collinear with the potential. A vector flow field
+can carry a rotational/curl component instead, making the directed generator
 non-reversible and its stationary distribution non-collinear with any scalar
 covariate.
 }
@@ -35,6 +35,12 @@ projected onto the edge direction,
 \eqn{c_{ab} = \tfrac{1}{2}(f_a + f_b) \cdot (xy_b - xy_a)}; it is antisymmetric
 by construction, and \code{dragon} applies \eqn{-c_{ab}} to the reverse
 edge \eqn{b \to a}.
+}
+\examples{
+coords <- as.matrix(expand.grid(x = 0:2, y = 0:2))
+g <- deme_graph(coords, neighbours = "lattice")
+field <- matrix(c(1, 0), nrow = nrow(coords), ncol = 2, byrow = TRUE)
+edge_flow(field, g)
 }
 \seealso{
 \code{\link{edge_gradient}}, \code{dragon}

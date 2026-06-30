@@ -4,8 +4,11 @@
 \name{landgraph-package}
 \alias{landgraph}
 \alias{landgraph-package}
-\title{landgraph: landscape-genetic graph, covariance, and directional covariate primitives}
+\title{landgraph: Graphs and Covariance for Landscape Genetics}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+}
+\details{
 Shared, dependency-light building blocks for landscape-genetic network methods.
 A lightweight deme/landscape graph (\code{\link{deme_graph}}); genetic
 covariance and distance from biallelic or multiallelic data
@@ -24,12 +27,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Bill Peterman \email{peterman.73@osu.edu}
+\strong{Maintainer}: Bill Peterman \email{peterman.73@osu.edu} [copyright holder]
 
 Authors:
 \itemize{
-  \item Bill Peterman \email{peterman.73@osu.edu}
-  \item Nathaniel S. Pope \email{nspope@utexas.edu}
+  \item Bill Peterman \email{peterman.73@osu.edu} [copyright holder]
+  \item Nathaniel S. Pope \email{nspope@utexas.edu} [copyright holder]
 }
 
 }

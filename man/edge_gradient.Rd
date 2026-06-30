@@ -24,6 +24,12 @@ directional gene flow (e.g. elevation drop, flow accumulation, wind
 potential).  \eqn{d_{ab} = -d_{ba}}, so a positive coefficient makes movement
 from high to low \code{x} faster.
 }
+\examples{
+coords <- as.matrix(expand.grid(x = 0:2, y = 0:2))
+g <- deme_graph(coords, neighbours = "lattice")
+elevation <- c(10, 20, 30, 25, 15, 5, 8, 18, 28)
+edge_gradient(elevation, g)
+}
 \seealso{
 \code{terradish_directed}
 }

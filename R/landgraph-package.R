@@ -1,4 +1,6 @@
-#' landgraph: landscape-genetic graph, covariance, and directional covariate primitives
+#' landgraph: Graphs and Covariance for Landscape Genetics
+#'
+#' \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 #'
 #' Shared, dependency-light building blocks for landscape-genetic network methods.
 #' A lightweight deme/landscape graph (\code{\link{deme_graph}}); genetic
