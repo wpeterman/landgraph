@@ -283,8 +283,10 @@ cov_from_biallelic <- function(Y,
 #'   deviation? Default \code{TRUE}. Constant features are dropped.
 #' @param tol Tolerance used to identify constant features when
 #'   \code{scale = TRUE}.
-#' @param diagonal How to set the returned covariance diagonal. \code{"auto"}
-#'   uses \code{"within"} for grouped population data with replication and
+#' @param diagonal How to set the returned covariance diagonal. The default,
+#'   \code{"gower"}, retains the centered covariance for both grouped and
+#'   individual-level data. The legacy \code{"auto"} option uses
+#'   \code{"within"} for grouped population data with replication and
 #'   \code{"gower"} for individual-level data. \code{"within"} replaces the
 #'   Gower covariance diagonal with the within-population genetic variance,
 #'   following the population-graph covariance construction. \code{"gower"}
@@ -419,7 +421,7 @@ cov_from_genetic_data <- function(x,
                                   center = TRUE,
                                   scale = TRUE,
                                   tol = sqrt(.Machine$double.eps),
-                                  diagonal = c("auto", "within", "gower"),
+                                  diagonal = c("gower", "within", "auto"),
                                   normalize = c("none", "features"))
 {
   input <- match.arg(input)

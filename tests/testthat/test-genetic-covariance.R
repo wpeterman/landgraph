@@ -22,7 +22,8 @@ test_that("cov_from_genetic_data constructs Dyer-style covariance from features"
               ncol = 2, byrow = TRUE)
   groups <- rep(c("pop_b", "pop_a", "pop_c"), each = 2)
 
-  cov <- cov_from_genetic_data(x, groups, center = FALSE, scale = FALSE)
+  cov <- cov_from_genetic_data(x, groups, center = FALSE, scale = FALSE,
+                               diagonal = "within")
 
   centroids <- matrix(c(0, 0,
                         1, 0,

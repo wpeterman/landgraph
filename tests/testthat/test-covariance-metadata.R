@@ -20,6 +20,8 @@ test_that("diagonal replacement is recorded without claiming site centering", {
               ncol = 2, byrow = TRUE)
   groups <- rep(1:3, each = 2)
   gower <- cov_from_genetic_data(x, groups, scale = FALSE, diagonal = "gower")
+  default <- cov_from_genetic_data(x, groups, scale = FALSE)
+  expect_identical(default, gower)
   within <- cov_from_genetic_data(x, groups, scale = FALSE, diagonal = "within")
   expect_equal(attr(gower, "centered"), "sites")
   expect_equal(unname(rowSums(gower)), rep(0, 3), tolerance = 1e-12)

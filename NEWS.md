@@ -1,3 +1,9 @@
+# landgraph 0.0.3
+
+* Default to the Gower diagonal for grouped genetic covariance. This preserves
+  site centering and avoids mixing covariance and within-population variance
+  scales. Explicit within and legacy auto choices remain available.
+
 # landgraph 0.0.2
 
 * Record covariance diagonal construction and centering metadata without
