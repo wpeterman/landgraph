@@ -340,6 +340,6 @@ test_that("cov_from_biallelic aligns each locus with its own pooled frequency", 
   freq <- Y[, keep, drop = FALSE] / N
   pb <- colMeans(freq)
   Gs <- sweep(sweep(freq, 2, pb, "-"), 2, sqrt(pb * (1 - pb)), "/")
-  expect_equal(unname(cov_from_biallelic(Y, N)),
+  expect_equal(unname(cov_from_biallelic(Y, N)[, ]),
                unname(N * (Gs %*% t(Gs)) / sum(keep)))
 })

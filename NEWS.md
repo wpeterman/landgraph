@@ -1,3 +1,12 @@
+# landgraph 0.0.2
+
+* Record covariance diagonal construction and centering metadata without
+  changing numerical values. Distinguish pooled allele-frequency centering
+  with unequal sample sizes and centering before diagonal replacement.
+* Clarify rare-variant weighting, unequal sampling variance, and the use of
+  Gower covariances for Wishart models. FST ratio estimates are not Wishart
+  responses.
+
 # landgraph 0.0.1
 
 * Initial release. Shared landscape-genetic primitives extracted from terradish so
