@@ -14,8 +14,8 @@ Description: Shared, dependency-light primitives for landscape-genetic network
   from biallelic or multiallelic data (the Yang-style normalized-dosage covariance
   and the Dyer-style multivariate covariance); and antisymmetric per-edge
   directional covariate builders (the gradient of a scalar potential, and the
-  projection of a vector flow field). Used by 'terradish' (symmetric resistance)
-  and 'dragonflow' (asymmetric gene flow). No compiled code.
+  projection of a vector flow field). Used by 'terradish' (symmetric resistance).
+  No compiled code.
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 4.0.0)

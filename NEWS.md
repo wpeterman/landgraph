@@ -16,8 +16,8 @@
 # landgraph 0.0.1
 
 * Initial release. Shared landscape-genetic primitives extracted from terradish so
-  that the symmetric (terradish) and asymmetric (dragonflow) network methods stand
-  on a common, dependency-light base.
+  that landscape-genetic network methods stand on a common, dependency-light
+  base.
 * Graph: `deme_graph()` builds a lightweight deme/landscape graph (vertex
   coordinates + undirected edge list) from coordinates, with Delaunay, k-nearest-
   neighbour, or lattice (rook/queen) adjacency. The result is class
