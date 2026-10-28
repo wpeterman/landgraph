@@ -1,6 +1,7 @@
 # landgraph <img src="man/figures/logo.png" align="right" height="139" alt="landgraph hex sticker" />
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/wpeterman/landgraph/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wpeterman/landgraph/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Shared, dependency-light functions for landscape-genetic **network** methods: a
