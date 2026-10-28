@@ -12,6 +12,9 @@ compiled code.
 ## Installation
 
 ```r
+install.packages("landgraph")
+
+# development version
 # install.packages("remotes")
 remotes::install_github("wpeterman/landgraph")
 ```
@@ -21,8 +24,10 @@ remotes::install_github("wpeterman/landgraph")
 - **Graph:** `deme_graph(coords, neighbours = c("delaunay", "knn", "lattice"))`
   builds a deme/landscape graph (`vertex_coordinates` + an undirected `edge_pairs`
   list) directly from coordinates. The result has class
-  `c("landgraph", "terradish_graph")`, so it is interchangeable with a
-  `terradish::conductance_surface()` result.
+  `c("landgraph", "terradish_graph")`. The class lets `edge_gradient()` and
+  `edge_flow()` accept the object. It lacks the covariates, Laplacian, and
+  Cholesky factor that `terradish::terradish()` needs; build fitting graphs with
+  `terradish::conductance_surface()`.
 - **Genetic covariance / distance:** `cov_from_biallelic()` (Yang-style normalized
   dosage covariance), `cov_from_genetic_data()` (Dyer-style multivariate, including
   microsatellite allele calls), `fst_from_biallelic()`, `dist_from_cov()`,
@@ -40,18 +45,25 @@ library(landgraph)
 coords <- as.matrix(expand.grid(x = 0:4, y = 0:4))
 g <- deme_graph(coords, neighbours = "lattice")   # 25 demes, rook adjacency
 
-# deme genetic covariance from per-deme derived-allele counts Y (demes x loci)
-S <- cov_from_biallelic(Y, N = 40)
+# derived-allele counts Y (demes x loci), 40 chromosomes per deme
+set.seed(1)
+Y <- matrix(rbinom(25 * 50, size = 40, prob = 0.4), nrow = 25)
+S <- cov_from_biallelic(Y, N = 40)                # count-standardized scale
+S_freq <- S / 40                                  # frequency scale for terradish
 
 # directional covariates for a downstream directed model
 elev <- g$vertex_coordinates[, 1]
-d_grad <- edge_gradient(elev, g)                   # gradient of a scalar potential
-d_curl <- edge_flow(wind_field, g)                 # a rotational flow field
+d_grad <- edge_gradient(elev, g)                  # gradient of a scalar potential
+wind_field <- function(xy) cbind(-(xy[, 2] - 2), xy[, 1] - 2)  # rotation about (2, 2)
+d_curl <- edge_flow(wind_field, g)                # a rotational flow field
 ```
 
 ## Relationship to other packages
 
-`landgraph` holds only the shared inputs. The methods live downstream: `terradish`
-estimates symmetric conductance (resistance distance) and consumes a `landgraph`
-graph, a covariance from `cov_from_*`, and directional covariates from
-`edge_gradient`/`edge_flow`.
+`landgraph` holds only the shared inputs. `terradish` estimates symmetric
+conductance (resistance distance) from the covariance and distance matrices
+built by `cov_from_*()` and `dist_from_*()`, and it builds its own fitting graphs
+with `terradish::conductance_surface()`. `edge_gradient()` builds the
+antisymmetric covariate `d_ab = x_a - x_b` for directional gene-flow models; it
+is positive from high to low `x`. `edge_flow()` serves the same directional
+models. `terradish` does not fit directional models.
