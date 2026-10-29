@@ -1,6 +1,9 @@
 ## Update submission
 
-This is an update of landgraph from 0.0.3 (on CRAN) to 0.0.4.
+This is an update of landgraph from 0.0.3 (published 2026-09-25) to 0.0.4.
+It follows 0.0.3 by about five weeks because it fixes a misaligned result in
+`fst_from_biallelic()` and corrects help text that the new package
+'terradish', submitted to CRAN at the same time, re-exports.
 
 ## Changes in this version
 
@@ -35,7 +38,7 @@ this version adds to the Description field (Yang et al. 2010; Dyer and Nason
 
 ## Test environments
 
-* Local: Windows 11, R 4.6.0 (`R CMD check --as-cran` on the built tarball):
+* Local: Windows 11, R 4.6.1 (`R CMD check --as-cran` on the built tarball):
   0 errors, 0 warnings, 0 notes
 * GitHub Actions (`R CMD check --as-cran`): macOS (R release), Windows
   (R release and R-devel), Ubuntu 24.04 (R-devel, R release, R oldrel-1):
@@ -45,6 +48,7 @@ this version adds to the Description field (Yang et al. 2010; Dyer and Nason
 
 ## Reverse dependencies
 
-terradish: `R CMD check --as-cran` of terradish 1.0.0 against this version
-gave no errors or warnings, and its tests and vignettes passed. (TO CONFIRM at
-submission: rerun against the CRAN release of terradish.)
+landgraph has no reverse dependencies on CRAN. terradish 1.1.0 (submitted to
+CRAN at the same time) passes `R CMD check --as-cran` against landgraph 0.0.4
+with 0 errors and 0 warnings, and its extended tests of the re-exported
+covariance and distance helpers pass (369 expectations, 0 failures).

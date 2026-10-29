@@ -2,7 +2,7 @@ Package: landgraph
 Type: Package
 Title: Graphs and Covariance for Landscape Genetics
 Version: 0.0.4
-Date: 2026-10-28
+Date: 2026-10-29
 Authors@R: c(
   person(given = "Bill", family = "Peterman", role = c("aut", "cre", "cph"),
          email = "peterman.73@osu.edu"),
