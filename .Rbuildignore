@@ -9,3 +9,4 @@
 ^.*\.tar\.gz$
 ^landgraph_hex_final\.png$
 ^figure$
+^CRAN-SUBMISSION$
